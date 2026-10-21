@@ -1,0 +1,490 @@
+/* ===== Базовые стили административной панели ===== */
+:root {
+  color-scheme: dark;
+  --admin-bg: #0a0a0a;
+  --admin-surface: #111;
+  --admin-card: #151515;
+  --admin-text: #fff;
+  --admin-muted: #a8a8a8;
+  --admin-line: rgba(255, 255, 255, .15);
+  --admin-dark: #fff;
+  --admin-radius: 8px;
+  font-family: Manrope, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--admin-text); background: var(--admin-bg); }
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+[hidden] { display: none !important; }
+.admin-body { min-width: 320px; background: var(--admin-bg); }
+
+/* ===== Экран входа ===== */
+.login-screen {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 28px;
+  background: radial-gradient(circle at 50% 0, #191919 0, var(--admin-bg) 62%);
+}
+.login-card {
+  width: min(100%, 420px);
+  padding: 38px;
+  border: 1px solid var(--admin-line);
+  border-radius: 12px;
+  background: var(--admin-card);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .4);
+}
+.login-card__logo { display: block; width: 100px; margin: 0 auto 20px; }
+.login-card__logo img { width: 100%; height: 54px; object-fit: contain; }
+.admin-eyebrow { color: var(--admin-muted); font-size: 10px; font-weight: 700; letter-spacing: .18em; text-align: center; }
+.login-card h1 { margin: 9px 0 0; font: 800 22px/1.25 Montserrat, sans-serif; text-align: center; }
+.login-card__intro { margin: 9px 0 26px; color: var(--admin-muted); font-size: 13px; text-align: center; }
+.login-card__submit { width: 100%; margin-top: 6px; }
+
+/* ===== Поля и кнопки ===== */
+.admin-form { display: grid; gap: 16px; }
+.admin-field { display: grid; gap: 7px; color: #dedede; font-size: 12px; font-weight: 700; }
+.admin-field input,
+.admin-field textarea,
+.admin-field select {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--admin-line);
+  border-radius: 5px;
+  outline: none;
+  background: #0b0b0b;
+  color: var(--admin-text);
+  font-size: 13px;
+  font-weight: 400;
+}
+.admin-field textarea { min-height: 100px; resize: vertical; }
+.admin-field input:focus,
+.admin-field textarea:focus,
+.admin-field select:focus { border-color: #fff; box-shadow: 0 0 0 2px rgba(255, 255, 255, .12); }
+.admin-field input[type="file"] { padding: 8px; }
+.admin-field--checkbox { display: flex; align-items: center; gap: 9px; font-weight: 500; }
+.admin-field--checkbox input { width: 16px; min-height: 16px; height: 16px; accent-color: #fff; }
+.admin-button {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border: 1px solid var(--admin-line);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--admin-text);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+.admin-button:hover { background: #242424; }
+.admin-button--primary { border-color: #fff; background: #fff; color: #0a0a0a; }
+.admin-button--primary:hover { background: #d8d8d8; }
+.admin-button--danger { border-color: rgba(255, 120, 120, .45); color: #ff9d9d; }
+.admin-button--small { min-height: 30px; padding: 6px 9px; font-size: 10px; }
+.admin-message { min-height: 18px; margin: 0; color: #ff9d9d; font-size: 12px; }
+.admin-message.is-success { color: #9bd4ad; }
+
+/* ===== Основная раскладка с боковым меню ===== */
+.admin-layout { display: grid; min-height: 100vh; grid-template-columns: 230px minmax(0, 1fr); }
+.admin-sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  padding: 22px 16px 16px;
+  border-right: 1px solid var(--admin-line);
+  background: var(--admin-surface);
+}
+.admin-sidebar__logo { display: block; width: 98px; margin: 0 0 34px 8px; }
+.admin-sidebar__logo img { width: 100%; height: 52px; object-fit: contain; }
+.admin-sidebar__caption { margin: 0 8px 12px; color: #777; font-size: 9px; font-weight: 800; letter-spacing: .14em; }
+.admin-nav { display: grid; gap: 4px; }
+.admin-nav__item {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #b7b7b7;
+  font-size: 12px;
+  text-align: left;
+}
+.admin-nav__item:hover { background: #1b1b1b; color: #fff; }
+.admin-nav__item.is-active { background: #242424; color: #fff; font-weight: 800; }
+.admin-nav__icon { display: inline-grid; width: 18px; place-items: center; color: #a8a8a8; font-size: 16px; }
+.admin-sidebar__bottom { display: grid; gap: 10px; margin-top: auto; padding: 14px 8px 0; border-top: 1px solid var(--admin-line); }
+.admin-sidebar__email { overflow: hidden; color: var(--admin-muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.admin-logout { justify-self: start; padding: 5px 0; border: 0; background: transparent; color: #c9c9c9; font-size: 11px; }
+.admin-logout:hover { color: #fff; }
+.admin-main { min-width: 0; padding: 0 30px 40px; }
+.admin-topbar { display: flex; min-height: 58px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--admin-line); color: var(--admin-muted); font-size: 10px; font-weight: 700; letter-spacing: .08em; }
+.admin-topbar span span { padding: 0 8px; color: #666; }
+.admin-topbar a { color: var(--admin-text); font-size: 11px; font-weight: 600; letter-spacing: 0; }
+.admin-section { max-width: 1440px; margin: 0 auto; padding-top: 28px; }
+.admin-section__heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 22px; }
+.admin-section__heading h1 { margin: 0; font: 800 25px/1.2 Montserrat, sans-serif; letter-spacing: -.02em; }
+.admin-section__heading p { margin: 7px 0 0; color: var(--admin-muted); font-size: 12px; }
+.admin-placeholder { display: grid; min-height: 360px; place-items: center; border: 1px dashed var(--admin-line); border-radius: var(--admin-radius); background: #101010; color: var(--admin-muted); font-size: 14px; }
+
+/* ===== Таблица товаров ===== */
+.admin-table-wrap { overflow-x: auto; border: 1px solid var(--admin-line); border-radius: var(--admin-radius); background: var(--admin-surface); }
+.admin-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; }
+.admin-table th { padding: 12px 14px; border-bottom: 1px solid var(--admin-line); background: #191919; color: #a8a8a8; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.admin-table td { padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,.08); vertical-align: middle; }
+.admin-table tr:last-child td { border-bottom: 0; }
+.admin-product-photo { width: 54px; height: 54px; border-radius: 4px; background: #222; object-fit: cover; }
+.admin-product-photo--empty { display: inline-grid; place-items: center; color: var(--admin-muted); font-size: 12px; }
+.admin-product-name { font-weight: 700; }
+.admin-product-size { display: block; margin-top: 3px; color: var(--admin-muted); font-size: 10px; }
+.admin-product-description { max-width: 260px; margin-top: 3px; color: var(--admin-muted); font-size: 10px; }
+.admin-products-error { min-height: 18px; margin: 0 0 12px; color: #ff9d9d; font-size: 12px; }
+.admin-status { display: inline-flex; align-items: center; gap: 6px; color: #a6d6b6; font-size: 10px; white-space: nowrap; }
+.admin-status::before { width: 7px; height: 7px; border-radius: 50%; background: #39a66a; content: ""; }
+.admin-status--hidden { color: #a8a8a8; }
+.admin-status--hidden::before { background: #777; }
+.admin-table__actions { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+.admin-empty { padding: 32px 16px !important; color: var(--admin-muted); text-align: center; }
+
+/* ===== Общее модальное окно ===== */
+.admin-modal { position: fixed; z-index: 20; inset: 0; display: grid; place-items: center; padding: 20px; }
+.admin-modal__backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, .78); }
+.admin-modal__panel { position: relative; width: min(100%, 560px); max-height: min(90vh, 760px); overflow-y: auto; padding: 22px; border: 1px solid var(--admin-line); border-radius: 9px; background: var(--admin-card); box-shadow: 0 24px 70px rgba(0,0,0,.65); }
+.admin-modal__header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.admin-modal__header h2 { margin: 0; font: 800 17px/1.3 Montserrat, sans-serif; }
+.admin-modal__close { width: 32px; height: 32px; border: 0; border-radius: 4px; background: transparent; color: #a8a8a8; font-size: 22px; }
+.admin-modal__close:hover { background: #242424; color: #fff; }
+.admin-modal__actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
+.admin-modal__error { min-height: 18px; margin: 0; color: #ff9d9d; font-size: 12px; }
+.admin-file-note { color: var(--admin-muted); font-size: 10px; font-weight: 400; }
+
+/* ===== Просмотр фото и выбор обложки в форме товара ===== */
+.admin-image-manager { min-width: 0; }
+.admin-image-manager__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 10px;
+}
+.admin-image-card {
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid var(--admin-line);
+  border-radius: 5px;
+  background: #0b0b0b;
+}
+.admin-image-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 3px;
+  background: #181818;
+  object-fit: cover;
+}
+.admin-image-card__option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: #dedede;
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.admin-image-card__option input {
+  width: 14px;
+  min-height: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: #fff;
+}
+.admin-image-card__option--remove { color: #c6a6a6; }
+
+/* ===== Список заявок покупателей ===== */
+.admin-leads-table { min-width: 940px; }
+.admin-leads-table th:first-child { min-width: 120px; }
+.admin-leads-table th:nth-child(2) { min-width: 150px; }
+.admin-leads-table th:nth-child(4) { min-width: 170px; }
+.admin-leads-table th:nth-child(5) { min-width: 180px; }
+.admin-lead-date { color: var(--admin-muted); font-size: 10px; white-space: nowrap; }
+.admin-lead-contact { min-width: 145px; }
+.admin-lead-contact a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.admin-lead-contact__type { display: block; margin-top: 4px; color: var(--admin-muted); font-size: 10px; }
+.admin-lead-comment { max-width: 250px; color: #c4c4c4; line-height: 1.5; overflow-wrap: anywhere; }
+.admin-lead-status {
+  min-height: 32px;
+  padding: 5px 25px 5px 8px;
+  border: 1px solid var(--admin-line);
+  border-radius: 4px;
+  outline: none;
+  background: #0b0b0b;
+  color: var(--admin-text);
+  font: 600 10px Manrope, sans-serif;
+}
+.admin-lead-status:focus { border-color: #fff; }
+.admin-leads-error { min-height: 18px; margin: 0 0 12px; color: #ff9d9d; font-size: 12px; }
+
+/* ===== Раздел управления группами товаров ===== */
+.admin-groups-table { width: 100%; }
+.admin-groups-table th:first-child { width: 58%; }
+.admin-groups-table th:nth-child(2) { width: 20%; }
+.admin-groups-table th:last-child { text-align: right; }
+.admin-groups-table td:last-child .admin-table__actions { justify-content: flex-end; }
+.admin-groups-table td:nth-child(2) { color: var(--admin-muted); font-variant-numeric: tabular-nums; }
+.admin-groups-error { min-height: 18px; margin: 0 0 12px; color: #ff9d9d; font-size: 12px; }
+
+/* ===== Раздел профилей сотрудников ===== */
+.admin-employees-hint {
+  max-width: 760px;
+  margin: -8px 0 18px;
+  padding: 12px 14px;
+  border-left: 2px solid #777;
+  background: #111;
+  color: #a8a8a8;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.admin-employees-table { min-width: 780px; }
+.admin-employees-table th:first-child { min-width: 220px; }
+.admin-employees-table th:nth-child(2) { min-width: 140px; }
+.admin-employees-table th:nth-child(3) { min-width: 135px; }
+.admin-employee-uuid { display: block; max-width: 310px; overflow: hidden; margin-top: 5px; color: #777; font: 9px/1.4 Consolas, monospace; text-overflow: ellipsis; white-space: nowrap; }
+.admin-employees-error { min-height: 18px; margin: 0 0 12px; color: #ff9d9d; font-size: 12px; }
+
+/* ===== Журнал приходных документов ===== */
+.admin-receipts-table { min-width: 1180px; }
+.admin-receipts-table th:first-child { min-width: 100px; }
+.admin-receipts-table th:nth-child(2) { min-width: 140px; }
+.admin-receipts-table th:nth-child(3) { min-width: 160px; }
+.admin-receipts-table th:nth-child(4),
+.admin-receipts-table th:nth-child(5),
+.admin-receipts-table th:nth-child(6),
+.admin-receipts-table th:nth-child(7),
+.admin-receipts-table th:nth-child(8) { min-width: 110px; }
+.admin-receipt-date { display: block; margin-top: 4px; color: var(--admin-muted); font-size: 10px; }
+.admin-receipt-debt { color: #e0c1c1 !important; font-variant-numeric: tabular-nums; }
+.admin-receipts-error { min-height: 18px; margin: 0 0 12px; color: #ff9d9d; font-size: 12px; }
+
+/* ===== Журнал расходов и заявки к оформлению продажи ===== */
+.admin-sales-block { margin-top: 30px; }
+.admin-sales-block--leads { margin-top: 38px; }
+.admin-sales-block__heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 14px; }
+.admin-sales-block__heading .admin-eyebrow { margin-bottom: 6px; text-align: left; }
+.admin-sales-block__heading h2 { margin: 0; font: 800 17px/1.3 Montserrat, sans-serif; letter-spacing: -.02em; }
+.admin-sales-table { min-width: 1020px; }
+.admin-sales-table th:nth-child(2) { min-width: 180px; }
+.admin-sales-table th:nth-child(5) { min-width: 120px; }
+.admin-open-leads-table { min-width: 780px; }
+.admin-open-leads-table th:first-child { min-width: 200px; }
+.admin-open-leads-table th:nth-child(2) { min-width: 180px; }
+.admin-sale-total { color: #fff !important; font-weight: 800; font-variant-numeric: tabular-nums; }
+.admin-sales-error { min-height: 18px; margin: 0 0 12px; color: #ff9d9d; font-size: 12px; }
+.admin-sales-migration,
+.admin-leads-migration {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-left: 2px solid #b5b5b5;
+  background: #121212;
+  color: #b8b8b8;
+  font-size: 11px;
+  line-height: 1.55;
+}
+.admin-button:disabled { cursor: not-allowed; opacity: .42; }
+@media (max-width: 680px) {
+  .admin-sales-block { margin-top: 25px; }
+  .admin-sales-block--leads { margin-top: 30px; }
+  .admin-sales-block__heading h2 { font-size: 15px; }
+}
+
+/* ===== Адаптация для планшета и телефона ===== */
+@media (max-width: 900px) {
+  .admin-layout { grid-template-columns: 190px minmax(0, 1fr); }
+  .admin-sidebar { padding-right: 10px; padding-left: 10px; }
+  .admin-main { padding-right: 20px; padding-left: 20px; }
+  .admin-table th, .admin-table td { padding-right: 10px; padding-left: 10px; }
+}
+@media (max-width: 680px) {
+  .login-card { padding: 28px 22px; }
+  .admin-layout { display: flex; flex-direction: column; }
+  .admin-sidebar { position: static; width: 100%; height: auto; padding: 10px 14px; border-right: 0; border-bottom: 1px solid var(--admin-line); }
+  .admin-sidebar__logo { width: 74px; margin: 0 auto 8px; }
+  .admin-sidebar__logo img { height: 38px; }
+  .admin-sidebar__caption { display: none; }
+  .admin-sidebar__bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 7px; padding: 6px 4px 0; border-top: 0; }
+  .admin-nav { display: flex; overflow-x: auto; gap: 5px; padding-bottom: 2px; }
+  .admin-nav__item { min-width: max-content; min-height: 36px; gap: 6px; padding: 7px 9px; font-size: 10px; }
+  .admin-nav__icon { width: auto; font-size: 14px; }
+  .admin-main { padding: 0 14px 26px; }
+  .admin-topbar { min-height: 46px; font-size: 8px; }
+  .admin-section { padding-top: 22px; }
+  .admin-section__heading { align-items: flex-start; }
+  .admin-section__heading h1 { font-size: 21px; }
+  .admin-button { font-size: 9px; }
+  .admin-modal { padding: 10px; }
+  .admin-modal__panel { padding: 18px; }
+}
+
+/* ===== Обновлённый монохромный вид админ-панели ===== */
+::selection { background: #fff; color: #090909; }
+.admin-body { background: #090909; }
+.admin-layout { grid-template-columns: 248px minmax(0, 1fr); }
+.admin-sidebar {
+  padding: 24px 17px 18px;
+  border-right-color: rgba(255, 255, 255, .12);
+  background: #0c0c0c;
+}
+.admin-sidebar__logo { width: 108px; margin: 0 0 42px 8px; }
+.admin-sidebar__caption { margin-bottom: 14px; color: #6e6e6e; font-size: 9px; letter-spacing: .2em; }
+.admin-nav { gap: 5px; }
+.admin-nav__item {
+  position: relative;
+  min-height: 44px;
+  gap: 13px;
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #a5a5a5;
+  font-size: 11px;
+  letter-spacing: .025em;
+  transition: color .22s ease, background .22s ease, border-color .22s ease;
+}
+.admin-nav__item:hover { border-color: rgba(255, 255, 255, .1); background: #151515; color: #fff; }
+.admin-nav__item.is-active { border-color: rgba(255, 255, 255, .16); background: #191919; color: #fff; }
+.admin-nav__item.is-active::before { position: absolute; top: 9px; bottom: 9px; left: -1px; width: 2px; background: #fff; content: ""; }
+.admin-nav__item.is-active .admin-nav__icon { color: #fff; }
+.admin-nav__icon {
+  display: block;
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: #858585;
+  transition: color .22s ease;
+}
+.admin-sidebar__bottom { gap: 12px; padding: 16px 8px 0; border-color: rgba(255, 255, 255, .12); }
+.admin-sidebar__email { color: #8f8f8f; }
+.admin-logout { color: #c7c7c7; transition: color .2s ease; }
+.admin-logout:hover { color: #fff; }
+.admin-main { padding-right: clamp(20px, 3vw, 44px); padding-left: clamp(20px, 3vw, 44px); }
+.admin-topbar { min-height: 64px; border-color: rgba(255, 255, 255, .12); font-size: 9px; letter-spacing: .15em; }
+.admin-topbar a { transition: opacity .2s ease; }
+.admin-topbar a:hover { opacity: .65; }
+.admin-section { padding-top: 38px; }
+.admin-section__heading { margin-bottom: 25px; }
+.admin-section__heading h1 { font-size: clamp(23px, 2.4vw, 30px); letter-spacing: -.035em; }
+.admin-section__heading p { color: #888; font-size: 12px; }
+.admin-button { min-height: 40px; border-radius: 3px; letter-spacing: .08em; transition: background .2s ease, border-color .2s ease, color .2s ease, opacity .2s ease; }
+.admin-button--primary { border-color: #fff; background: #fff; color: #090909; }
+.admin-button--primary:hover { border-color: #d5d5d5; background: #d5d5d5; }
+.admin-button--danger:hover { border-color: #ff9d9d; background: rgba(255, 120, 120, .09); }
+.admin-table-wrap { border-color: rgba(255, 255, 255, .13); border-radius: 4px; background: #0e0e0e; }
+.admin-table th { background: #151515; color: #929292; letter-spacing: .12em; }
+.admin-table td { color: #d9d9d9; }
+.admin-table tbody tr { transition: background .18s ease; }
+.admin-table tbody tr:hover { background: rgba(255, 255, 255, .025); }
+.admin-product-photo { border: 1px solid rgba(255, 255, 255, .12); border-radius: 2px; }
+.admin-lead-status { border-radius: 3px; }
+.admin-placeholder { border-color: rgba(255, 255, 255, .18); border-radius: 4px; background: #0e0e0e; }
+.admin-modal__panel { border-radius: 4px; }
+
+/* ===== Навигация по отчётам и выбор условий ===== */
+.reports-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.reports-tab { min-height: 38px; padding: 9px 13px; border: 1px solid rgba(255,255,255,.12); border-radius: 3px; background: #101010; color: #aaa; font: inherit; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: color .2s ease, border-color .2s ease, background .2s ease; }
+.reports-tab:hover, .reports-tab.is-active { border-color: rgba(255,255,255,.55); background: #1a1a1a; color: #fff; }
+.reports-filter { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; margin-bottom: 18px; padding: 16px; border: 1px solid rgba(255,255,255,.12); border-radius: 4px; background: #0e0e0e; }
+.reports-filter .admin-field { flex: 1 1 170px; min-width: 150px; }
+.reports-filter .admin-button { min-height: 39px; }
+.reports-filter [hidden] { display: none !important; }
+.report-result__heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 25px 0 12px; }
+.report-result__heading h2 { margin: 0; font-size: 18px; }
+.report-result__heading .admin-button { min-height: 34px; padding: 8px 11px; font-size: 9px; }
+.report-result .admin-table { min-width: 700px; }
+.report-result .admin-table td, .report-result .admin-table th { vertical-align: middle; }
+.report-total th { background: #191919; color: #fff; font-weight: 800; }
+.report-group th { padding-top: 13px; background: #202020; color: #fff; text-align: left; }
+.report-subtotal td { background: #141414; color: #ddd; font-weight: 700; }
+.report-result .admin-empty { padding: 26px 14px; text-align: center; }
+.admin-error[data-report-message], .admin-error[data-purchase-message] { color: #ff9b9b; font-size: 12px; }
+.purchase-requirements { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px 20px; margin-top: 34px; padding: 20px; border: 1px solid rgba(255,255,255,.15); border-radius: 4px; background: linear-gradient(110deg, #151515, #0d0d0d); }
+.purchase-requirements h2 { margin: 0 0 6px; font-size: 18px; }
+.purchase-requirements p { margin: 0; color: #929292; font-size: 12px; line-height: 1.6; }
+.purchase-requirements .admin-eyebrow { margin-bottom: 7px; color: #aaa; font-size: 9px; letter-spacing: .15em; }
+.purchase-requirements > [data-purchase-message], .purchase-requirements > [data-purchase-result] { grid-column: 1 / -1; }
+.purchase-requirements > [data-purchase-message]:empty { display: none; }
+
+/* ===== Адаптация фильтров отчётов на небольшом экране ===== */
+@media (max-width: 680px) {
+  .reports-tabs { flex-wrap: nowrap; overflow-x: auto; margin-right: -14px; padding: 0 14px 7px 0; scrollbar-width: thin; }
+  .reports-tab { flex: 0 0 auto; min-height: 35px; padding: 8px 10px; font-size: 9px; }
+  .reports-filter { align-items: stretch; gap: 10px; padding: 12px; }
+  .reports-filter .admin-field { flex-basis: 100%; }
+  .reports-filter .admin-button { width: 100%; }
+  .report-result__heading { align-items: flex-start; }
+  .report-result__heading h2 { font-size: 15px; }
+  .purchase-requirements { grid-template-columns: 1fr; gap: 12px; padding: 15px; }
+  .purchase-requirements > .admin-button { width: 100%; }
+}
+
+/* ===== Адаптация админ-панели для планшета ===== */
+@media (max-width: 900px) {
+  .admin-layout { grid-template-columns: 205px minmax(0, 1fr); }
+  .admin-sidebar { padding-right: 13px; padding-left: 13px; }
+  .admin-sidebar__logo { margin-bottom: 34px; }
+  .admin-main { padding-right: 20px; padding-left: 20px; }
+  .admin-section { padding-top: 30px; }
+}
+
+/* ===== Адаптация админ-панели для телефона ===== */
+@media (max-width: 680px) {
+  .admin-layout { gap: 0; }
+  .admin-sidebar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 7px 12px;
+    padding: 12px 14px 10px;
+    background: #0b0b0b;
+  }
+  .admin-sidebar__logo { grid-column: 1; width: 84px; margin: 0; }
+  .admin-sidebar__logo img { height: 42px; }
+  .admin-nav { grid-column: 1 / -1; gap: 6px; margin: 0 -14px; padding: 8px 14px 4px; border-top: 1px solid rgba(255, 255, 255, .1); scrollbar-color: #505050 #111; scrollbar-width: thin; }
+  .admin-nav__item { min-height: 38px; gap: 7px; padding: 7px 10px; border-color: rgba(255, 255, 255, .08); border-radius: 3px; font-size: 10px; }
+  .admin-nav__item.is-active::before { top: auto; right: 8px; bottom: -1px; left: 8px; width: auto; height: 1px; }
+  .admin-nav__icon { width: 15px; height: 15px; flex-basis: 15px; }
+  .admin-sidebar__bottom { grid-column: 2; grid-row: 1; display: flex; align-items: center; gap: 12px; margin: 0; padding: 0; border: 0; }
+  .admin-sidebar__email { max-width: 120px; font-size: 9px; }
+  .admin-logout { font-size: 10px; white-space: nowrap; }
+  .admin-main { padding: 0 14px 28px; }
+  .admin-topbar { min-height: 44px; font-size: 8px; letter-spacing: .1em; }
+  .admin-topbar a { font-size: 10px; }
+  .admin-section { padding-top: 25px; }
+  .admin-section__heading { align-items: center; gap: 12px; margin-bottom: 18px; }
+  .admin-section__heading h1 { font-size: 22px; }
+  .admin-section__heading p { max-width: 220px; font-size: 11px; }
+  .admin-section__heading > .admin-button { flex: 0 0 auto; min-height: 36px; padding: 8px 10px; font-size: 9px; }
+  .admin-table-wrap { border-radius: 3px; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+  .admin-table { font-size: 11px; }
+  .admin-table th { font-size: 8px; }
+  .admin-table th, .admin-table td { padding: 10px 9px; }
+  .admin-modal__panel { border-radius: 3px; }
+}
+
+/* ===== Упрощённые состояния для устройств без точного наведения ===== */
+@media (hover: none), (max-width: 1024px) {
+  .admin-nav__item:hover,
+  .admin-table tbody tr:hover { background: transparent; }
+  .admin-nav__item.is-active { background: #191919; }
+  .admin-button:hover { background: transparent; }
+  .admin-button--primary:hover { background: #fff; }
+}

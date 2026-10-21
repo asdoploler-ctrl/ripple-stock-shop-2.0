@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Контакты Ripple Stock в Бендерах: Telegram, Instagram, email и ответы на частые вопросы.">
+  <title>Контакты — Ripple Stock</title>
+  <link rel="icon" type="image/png" href="./img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Manrope:wght@400;500;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <!-- Общая шапка сайта; активная ссылка показывает текущую страницу -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="header__logo" href="index.html" aria-label="Ripple Stock — главная">
+        <img src="./img/logo.png" alt="Рукописный логотип Ripple">
+      </a>
+      <nav class="header__nav" id="site-menu" aria-label="Основная навигация">
+        <a class="header__link" href="catalog.html">Каталог</a>
+        <a class="header__link" href="about.html">О нас</a>
+        <a class="header__link active" href="contacts.html" aria-current="page">Контакты</a>
+      </nav>
+      <div class="header__social">
+        <a class="icon-link" href="#" aria-label="Telegram Ripple Stock"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-7.2 18-4.1-7.2L3 9.7 21 3Z"/><path d="m9.7 13.8 5.2-5.1"/></svg></a>
+        <a class="icon-link" href="#" aria-label="Instagram Ripple Stock"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+        <a class="icon-link" href="#" aria-label="Корзина"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l-1.5 13h-13L4 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg></a>
+      </div>
+      <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Общий hero с текстом страницы контактов -->
+  <section class="hero">
+    <div class="container hero__content">
+      <div class="hero__copy">
+        <h1 class="hero__title">СВЯЖИСЬ<br>С НАМИ</h1>
+        <p class="hero__subtitle">МЫ ВСЕГДА НА СВЯЗИ.</p>
+        <p class="hero__text">Есть вопросы по товарам, доставке или сотрудничеству? Напиши нам — быстро ответим.</p>
+        <a href="#contact-form" class="btn hero__button">НАПИСАТЬ НАМ
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- Контакты, форма сообщения и адрес; края секции стилизованы как рваная бумага -->
+    <section class="section contact-panel torn-edge" id="contact-section">
+      <div class="container contact-panel__inner">
+        <h2 class="h2 contact-panel__title reveal">НАПИШИ НАМ</h2>
+        <div class="contact-grid">
+          <div class="contact-list">
+            <article class="contact-item reveal">
+              <svg class="contact-item__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="m28 4-10 24-5-10-9-5L28 4Z"/><path d="m13 18 8-8"/></svg>
+              <div><h3>TELEGRAM</h3><p>Напиши нам в Telegram и получи быстрый ответ.</p><a href="https://t.me/ripple_stock">@ripple_stock</a></div>
+            </article>
+            <article class="contact-item reveal">
+              <svg class="contact-item__icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="4" width="24" height="24" rx="7"/><circle cx="16" cy="16" r="6"/><path d="M23 9h.01"/></svg>
+              <div><h3>INSTAGRAM</h3><p>Следи за новинками, акциями и поступлениями.</p><a href="https://instagram.com/ripple.stock">@ripple.stock</a></div>
+            </article>
+            <article class="contact-item reveal">
+              <svg class="contact-item__icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="20" rx="2"/><path d="m4 8 12 10L28 8"/></svg>
+              <div><h3>EMAIL</h3><p>По вопросам сотрудничества и рекламы.</p><a href="mailto:ripple.stock@mail.com">ripple.stock@mail.com</a></div>
+            </article>
+            <article class="contact-item reveal">
+              <svg class="contact-item__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M26 13c0 8-10 16-10 16S6 21 6 13a10 10 0 1 1 20 0Z"/><circle cx="16" cy="13" r="3"/></svg>
+              <div><h3>НАШ ГОРОД</h3><p>Бендеры, Приднестровье <span aria-hidden="true">→</span></p></div>
+            </article>
+          </div>
+
+          <div class="contact-form-column reveal">
+            <!-- Форма отправляет сообщения в Formspree методом POST. -->
+            <form class="contact-form" id="contact-form" action="https://formspree.io/f/mljgnrvj" method="POST" novalidate>
+              <input type="hidden" name="_subject" value="Новое сообщение с сайта Ripple Stock">
+              <label class="visually-hidden" for="contact-name">Ваше имя *</label>
+              <input id="contact-name" name="name" type="text" placeholder="Ваше имя *" autocomplete="name">
+              <label class="visually-hidden" for="contact-way">Telegram / WhatsApp / Instagram *</label>
+              <input id="contact-way" name="contact" type="text" placeholder="Telegram / WhatsApp / Instagram *" autocomplete="off">
+              <label class="visually-hidden" for="contact-message">Сообщение *</label>
+              <textarea id="contact-message" name="message" rows="4" placeholder="Сообщение *"></textarea>
+              <label class="contact-form__consent">
+                <input name="consent" type="checkbox">
+                <span>Я согласен на обработку <a href="#privacy">персональных данных</a></span>
+              </label>
+              <button class="btn contact-form__submit" type="submit">ОТПРАВИТЬ
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+              </button>
+              <p class="contact-form__message" id="form-message" role="status" aria-live="polite"></p>
+              <p class="handwritten contact-form__note"><span>Ответим<br>в течение 1–2 часов</span>
+              </p>
+            </form>
+          </div>
+
+          <aside class="contact-place">
+            <div class="contact-place__photo-area reveal">
+              <figure class="polaroid contact-place__photo">
+                <img class="bw" src="./img/bender.jpg" alt="Вид на город Бендеры">
+              </figure>
+              <p class="handwritten contact-place__caption">
+                <svg class="contact-place__caption-pin" viewBox="0 0 32 32" aria-hidden="true"><path d="M26 13c0 8-10 16-10 16S6 21 6 13a10 10 0 1 1 20 0Z"/><circle cx="16" cy="13" r="3"/></svg>
+                Бендеры<br>ПМР <span aria-hidden="true">↗</span>
+              </p>
+            </div>
+            <div class="contact-place__details">
+              <article class="place-detail reveal">
+                <svg class="place-detail__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M26 13c0 8-10 16-10 16S6 21 6 13a10 10 0 1 1 20 0Z"/><circle cx="16" cy="13" r="3"/></svg>
+                <div><h3>НАШ АДРЕС</h3><p>г. Бендеры, Приднестровье<br>(точный адрес уточните в Telegram)</p></div>
+              </article>
+              <article class="place-detail reveal">
+                <svg class="place-detail__icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="M16 8v9l6 3"/></svg>
+                <div><h3>ГРАФИК РАБОТЫ</h3><p>Пн – Пт: 10:00 – 20:00<br>Сб – Вс: 11:00 – 18:00</p></div>
+              </article>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Частые вопросы и тёмная карта Бендер -->
+    <section class="section faq-section">
+      <div class="container faq-section__inner">
+        <div class="faq-column">
+          <h2 class="h2 faq__title reveal">ЧАСТЫЕ ВОПРОСЫ</h2>
+          <div class="faq-list">
+            <article class="faq__item reveal">
+              <h3><button class="faq__question" type="button" aria-expanded="false"><span>Как оформить заказ?</span><span class="faq__symbol" aria-hidden="true">+</span></button></h3>
+              <div class="faq__answer"><p>Напиши нам в Telegram или оставь контакты в форме. Мы уточним наличие, размер и детали заказа.</p></div>
+            </article>
+            <article class="faq__item reveal">
+              <h3><button class="faq__question" type="button" aria-expanded="false"><span>Какие способы оплаты есть?</span><span class="faq__symbol" aria-hidden="true">+</span></button></h3>
+              <div class="faq__answer"><p>Доступные способы оплаты можно уточнить у нас в Telegram перед подтверждением заказа.</p></div>
+            </article>
+            <article class="faq__item reveal">
+              <h3><button class="faq__question" type="button" aria-expanded="false"><span>Сколько идет доставка?</span><span class="faq__symbol" aria-hidden="true">+</span></button></h3>
+              <div class="faq__answer"><p>Срок зависит от города и способа доставки. Напиши нам — подскажем по твоему адресу.</p></div>
+            </article>
+            <article class="faq__item reveal">
+              <h3><button class="faq__question" type="button" aria-expanded="false"><span>Можно ли примерить перед покупкой?</span><span class="faq__symbol" aria-hidden="true">+</span></button></h3>
+              <div class="faq__answer"><p>Возможность примерки уточняется индивидуально. Свяжись с нами, и мы расскажем о вариантах.</p></div>
+            </article>
+            <article class="faq__item reveal">
+              <h3><button class="faq__question" type="button" aria-expanded="false"><span>Как вернуть товар?</span><span class="faq__symbol" aria-hidden="true">+</span></button></h3>
+              <div class="faq__answer"><p>Напиши нам, если возник вопрос по покупке. Мы обсудим ситуацию и поможем разобраться.</p></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="map-column reveal">
+          <div class="map-frame">
+            <iframe class="map-frame__iframe" title="Карта города Бендеры на OpenStreetMap" src="https://www.openstreetmap.org/export/embed.html?bbox=29.445%2C46.812%2C29.515%2C46.854&amp;layer=mapnik&amp;marker=46.833%2C29.48" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-frame__marker" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="M26 13c0 8-10 16-10 16S6 21 6 13a10 10 0 1 1 20 0Z"/><circle cx="16" cy="13" r="3"/></svg>
+              <span>RIPPLE STOCK</span>
+            </div>
+            <div class="map-frame__zoom" aria-hidden="true"><span>+</span><span>−</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Общий подвал сайта с Telegram, социальными ссылками и служебной информацией -->
+  <footer class="footer">
+    <div class="container footer__top reveal">
+      <a class="footer__brand" href="index.html" aria-label="Ripple Stock — главная"><img src="./img/logo.png" alt="Логотип Ripple Stock в две строки"></a>
+      <div class="footer__telegram"><p>Следи за обновлениями в нашем Telegram канале</p><a href="#" aria-label="Перейти в Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-7.2 18-4.1-7.2L3 9.7 21 3Z"/><path d="m9.7 13.8 5.2-5.1"/></svg></a><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      <div class="footer__social"><div class="footer__icons">
+        <a class="icon-link" href="#" aria-label="Telegram Ripple Stock"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-7.2 18-4.1-7.2L3 9.7 21 3Z"/><path d="m9.7 13.8 5.2-5.1"/></svg></a>
+        <a class="icon-link" href="#" aria-label="Instagram Ripple Stock"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+        <a class="icon-link" href="#" aria-label="Корзина"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l-1.5 13h-13L4 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg></a>
+      </div><p class="footer__tagline">STREETWEAR / RESALE / MD</p></div>
+    </div>
+    <div class="container footer__bottom reveal"><p>© 2026 Ripple Stock. Все права защищены.</p><a class="footer__policy" href="#privacy">Политика конфиденциальности</a></div>
+  </footer>
+</body>
+</html>

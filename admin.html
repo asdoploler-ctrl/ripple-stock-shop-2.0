@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Админ-панель — Ripple Stock</title>
+  <link rel="icon" type="image/png" href="./img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script type="module">
+    import { initAuth } from './js/admin/auth.js';
+    import { initNav } from './js/admin/nav.js';
+    import { initModal } from './js/admin/modal.js';
+    import { initProducts } from './js/admin/products.js';
+
+    initModal();
+    initNav();
+    initProducts();
+    initAuth();
+  </script>
+</head>
+<body class="admin-body">
+  <!-- Форма входа показывается, пока Supabase не подтвердит активную сессию -->
+  <main class="login-screen" id="login-screen">
+    <section class="login-card" aria-labelledby="login-title">
+      <a class="login-card__logo" href="index.html" aria-label="На сайт Ripple Stock"><img src="./img/logo.png" alt="Ripple Stock"></a>
+      <p class="admin-eyebrow">RIPPLE STOCK</p>
+      <h1 id="login-title">Панель администратора</h1>
+      <p class="login-card__intro">Войди, чтобы управлять товарами магазина.</p>
+      <form id="login-form" class="admin-form">
+        <label class="admin-field"><span>Email</span><input id="login-email" name="email" type="email" autocomplete="username" placeholder="name@example.com" required></label>
+        <label class="admin-field"><span>Пароль</span><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Введи пароль" required></label>
+        <p class="admin-message" id="login-message" role="status" aria-live="polite"></p>
+        <button class="admin-button admin-button--primary login-card__submit" type="submit">ВОЙТИ <span aria-hidden="true">→</span></button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Основная панель появляется только после проверки сессии -->
+  <div class="admin-layout" id="admin-panel" hidden>
+    <aside class="admin-sidebar">
+      <a class="admin-sidebar__logo" href="index.html" aria-label="Перейти на сайт"><img src="./img/logo.png" alt="Ripple Stock"></a>
+      <p class="admin-sidebar__caption">УПРАВЛЕНИЕ</p>
+      <nav class="admin-nav" aria-label="Разделы админ-панели">
+        <button class="admin-nav__item" type="button" data-section="requests"><svg class="admin-nav__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v13H4z"/><path d="m5 7 7 5 7-5M8 18.5v-3m8 3v-3"/></svg><span>Заявки</span></button>
+        <button class="admin-nav__item is-active" type="button" data-section="products" aria-current="page"><svg class="admin-nav__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m4 8 8-4 8 4-8 4-8-4Z"/><path d="M4 8v9l8 4 8-4V8M12 12v9"/></svg><span>Товары</span></button>
+        <button class="admin-nav__item" type="button" data-section="groups"><svg class="admin-nav__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg><span>Группы</span></button>
+        <button class="admin-nav__item" type="button" data-section="income"><svg class="admin-nav__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/><path d="M4 5h4m8 14h4"/></svg><span>Приход</span></button>
+        <button class="admin-nav__item" type="button" data-section="expenses"><svg class="admin-nav__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M5 5h4m6 14h4"/></svg><span>Расход</span></button>
+        <button class="admin-nav__item" type="button" data-section="employees"><svg class="admin-nav__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1.5a6 6 0 0 1 12 0V20m2-12a3.5 3.5 0 0 1 0 6.8m1 2a5.5 5.5 0 0 1 3 4.2"/></svg><span>Сотрудники</span></button>
+        <button class="admin-nav__item" type="button" data-section="reports"><svg class="admin-nav__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11m5 9V5m6 15v-7m5 7V8"/><path d="M2 20h20"/></svg><span>Отчёты</span></button>
+      </nav>
+      <div class="admin-sidebar__bottom">
+        <span class="admin-sidebar__email" id="admin-email">Администратор</span>
+        <button class="admin-logout" id="logout-button" type="button"><span aria-hidden="true">↪</span> Выйти</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar"><span>RIPPLE STOCK <span>/</span> АДМИН-ПАНЕЛЬ</span><a href="index.html">Открыть сайт ↗</a></header>
+      <section class="admin-section" id="admin-section" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <!-- Одно модальное окно используется для добавления и изменения данных -->
+  <div class="admin-modal" id="admin-modal" hidden>
+    <div class="admin-modal__backdrop" data-modal-close></div>
+    <section class="admin-modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="admin-modal__header"><h2 id="modal-title"></h2><button class="admin-modal__close" type="button" aria-label="Закрыть окно" data-modal-close>×</button></header>
+      <form id="modal-form" class="admin-form"></form>
+    </section>
+  </div>
+</body>
+</html>
